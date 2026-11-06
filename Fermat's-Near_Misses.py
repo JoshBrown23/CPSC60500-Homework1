@@ -38,6 +38,7 @@ RESOURCES USED:
 
 
 from math import floor
+from tqdm import tqdm
 
 # n = 9
 # x = 126
@@ -55,19 +56,20 @@ from math import floor
 
 
 near_miss = 0
-n = 4
-
-for x in range(10, 100000):
-    for y in range(10, 100000):
-        s = x**n + y**n
-        z = floor(pow(s, (1/n))) # Taking nth root of s - sum of x^n and y^n
-        z_diff = (s - z**n)
-        z1_diff = ((z+1)**n - s)
-        current_near_miss = min(z_diff, z1_diff)
-        if current_near_miss < near_miss or near_miss == 0:
-            near_miss = current_near_miss
-            print(f"x: {x}| y: {y}| z: {z}| acutal miss: {current_near_miss} | relative miss:{(current_near_miss / s) * 100}%")
-        else:
-            continue
+k = int(input("Enter the upper limit for x and y (k > 10): "))
+n = int(input("Enter the value of n (2 < n < 12): "))
+for i in tqdm(range(k)):
+    for x in range(10, k):
+        for y in range(10, k):
+            s = x**n + y**n
+            z = floor(pow(s, (1/n))) # Taking nth root of s - sum of x^n and y^n
+            z_diff = (s - z**n)
+            z1_diff = ((z+1)**n - s)
+            current_near_miss = min(z_diff, z1_diff)
+            if current_near_miss < near_miss or near_miss == 0:
+                near_miss = current_near_miss
+                print(f"x: {x}| y: {y}| z: {z}| actual miss: {current_near_miss} | relative miss: {(current_near_miss / s) * 100} %")
+            else:
+                continue
 
 print(f"Final near miss: {near_miss }| relative miss: {(near_miss / s) * 100}%")
