@@ -16,7 +16,6 @@ RESOURCES USED:
 def calculate_near_miss(n, k):
     relative_miss = 0
     miss = 0
-
     for x in range(10, k):
         for y in range(10, k):
             s = pow(x,n) + pow(y,n)
@@ -34,15 +33,12 @@ def calculate_near_miss(n, k):
 
     print(f"Final near miss: {miss}| relative miss: {relative_miss}%")
 
-
-
-
 def main():
     n = int(input("Enter the value of n (2 < n < 12): "))
     while n <= 2 or n >= 12:
         n = int(input("Please enter an n value greater than 2 and less than 12: "))
 
-    k = int(input("Enter the upper limit for x and y (k > 10): "))
+    k = int(input("Enter the value of k (k > 10): "))
     while k <= 10:
         k = int(input("Please enter a k value greater than 10: "))
 
